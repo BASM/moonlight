@@ -25,20 +25,19 @@ int main(void)
   PORTB = (1<<BUTTON0) | (1<<BUTTON1);
   //BIT_DOWN(MCUCR, PUD); -- 0 by default
 
-#define DL 1
+#define DL 1000
+  int i=1;
   while(1){
-    _delay_us(DL);
-    BIT_UP(PORTB, COL_R);
-    _delay_us(DL);
-    BIT_UP(PORTB, COL_G);
-    _delay_us(DL);
-    BIT_UP(PORTB, COL_B);
-    _delay_us(DL);
-    BIT_DOWN(PORTB, COL_R);
-    _delay_us(DL);
-    BIT_DOWN(PORTB, COL_G);
-    _delay_us(DL);
-    BIT_DOWN(PORTB, COL_B);
+    _delay_ms(DL);
+    PORTB &= ~(7);
+    PORTB |= i&7;
+    switch(i){
+      case 1: i=2; break;
+      case 2: i=4; break;
+      case 4: i=0; break;
+      case 0: i=1; break;
+      default: 0;
+    }
   }
 
   return 0;
