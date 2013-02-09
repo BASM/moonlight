@@ -6,6 +6,8 @@
  * \todo
  */
 
+#define sleep(...)
+
 #include <stdio.h>
 #include <moon.h>
 
