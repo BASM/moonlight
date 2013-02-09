@@ -16,6 +16,11 @@
 #define BIT_UP(reg, bit) \
   reg |= (1<<bit);
 
+int setColor(mask){
+    PORTB &= ~(7);
+    PORTB |= mask&7;
+}
+
 int main(void)
 {
   // mask for output
@@ -25,20 +30,62 @@ int main(void)
   PORTB = (1<<BUTTON0) | (1<<BUTTON1);
   //BIT_DOWN(MCUCR, PUD); -- 0 by default
 
-#define DL 1
+#define DL 1000
+  int i=1;
   while(1){
-    _delay_us(DL);
-    BIT_UP(PORTB, COL_R);
-    _delay_us(DL);
-    BIT_UP(PORTB, COL_G);
-    _delay_us(DL);
-    BIT_UP(PORTB, COL_B);
-    _delay_us(DL);
-    BIT_DOWN(PORTB, COL_R);
-    _delay_us(DL);
-    BIT_DOWN(PORTB, COL_G);
-    _delay_us(DL);
-    BIT_DOWN(PORTB, COL_B);
+    int b0,b1;
+    int oldb0, oldb1;
+
+    b0 = PINB&(1<<BUTTON0);
+    if(oldb0!=b0){
+      oldb0=b0;
+      _delay_ms(10);
+      if(!b0){
+        clickPowerButton();
+        //  BIT_UP(PORTB, COL_R);
+      }else{
+        //  BIT_DOWN(PORTB, COL_R);
+      }
+    }
+
+    b1 = PINB&(1<<BUTTON1);
+    if(oldb1!=b1){
+      oldb1=b1;
+      _delay_ms(10);
+      if(!b1){
+        clickColorButton();
+        //  BIT_UP(PORTB, COL_G);
+      }else{
+        //  BIT_DOWN(PORTB, COL_G);
+
+      }
+    }
+
+    /* TEST BUTTONS
+    int b0 = PINB&(1<<BUTTON0); 
+    int b1 = PINB&(1<<BUTTON1); 
+    if(!b0){
+      BIT_UP(PORTB, COL_R);
+    }else{
+      BIT_DOWN(PORTB, COL_R);
+    }
+    if(!b1){
+      BIT_UP(PORTB, COL_G);
+    }else{
+      BIT_DOWN(PORTB, COL_G);
+    }*/
+    /* TEST R G B
+    _delay_ms(DL);
+    PORTB &= ~(7);
+    PORTB |= i&7;
+    switch(i){
+      case 1: i=2; break;
+      case 2: i=4; break;
+      case 4: i=0; break;
+      case 0: i=1; break;
+      default: 0;
+    }
+    */
   }
 
   return 0;

@@ -1,0 +1,63 @@
+# EESchema Netlist Version 1.1 created  Сб. 09 февр. 2013 00:36:25
+(
+ ( /5115619F C1 C1 CP1
+  ( 1 N-000012 )
+  ( 2 GND )
+ )
+ ( /51155912 DIP-8__300 IC1 ATTINY45-P
+  ( 1 ? )
+  ( 2 N-000011 )
+  ( 3 N-000008 )
+  ( 4 GND )
+  ( 5 N-000010 )
+  ( 6 N-000002 )
+  ( 7 N-000009 )
+  ( 8 N-000012 )
+ )
+ ( /00000000 SIL-4 P1 CONN_4
+  ( 1 N-000003 )
+  ( 2 N-000005 )
+  ( 3 N-000006 )
+  ( 4 +12V )
+ )
+ ( /51155914 SIL-2 P2 V12
+  ( 1 +12V )
+  ( 2 GND )
+ )
+ ( /511555C0 SOT23GDS Q1 MOSFET_N
+  ( D N-000003 )
+  ( G N-000010 )
+  ( S GND )
+ )
+ ( /51155917 SOT23GDS Q2 MOSFET_N
+  ( D N-000005 )
+  ( G N-000002 )
+  ( S GND )
+ )
+ ( /51155753 SOT23GDS Q3 MOSFET_N
+  ( D N-000006 )
+  ( G N-000009 )
+  ( S GND )
+ )
+ ( /51155916 SW_PUSH-12mm SW1 SW_PUSH
+  ( 1 GND )
+  ( 2 N-000011 )
+ )
+ ( /51155281 SW_PUSH-12mm SW2 SW_PUSH
+  ( 1 GND )
+  ( 2 N-000008 )
+ )
+ ( /51155913 LM78LXX U1 78L05
+  ( GND GND )
+  ( VI +12V )
+  ( VO N-000012 )
+ )
+)
+*
+{ Allowed footprints by component:
+$component C1
+ CP*
+ SM*
+$endlist
+$endfootprintlist
+}

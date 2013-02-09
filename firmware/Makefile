@@ -23,8 +23,10 @@ COMPILE = avr-gcc -Os -Wall -I. -mmcu=$(DEVICE)  #-Ilibs/libir/include/
 OBJECTS = main.o
 
 # symbolic targets:
-all: main.hex
+all: libmoon main.hex
 
+libmoon:
+	make -C libs/libmoon/
 #libir:
 #	make -C libs/libir/
 
@@ -99,8 +101,10 @@ clean:
 # file targets:
 	#libs/libir/libir.a
 	#-lir
-main.bin:	$(OBJECTS) 
-	$(COMPILE) -o main.bin $(OBJECTS) -Llibs/libir
+main.bin:	$(OBJECTS) libs/libmoon/libmoon.a
+	$(COMPILE) -o main.bin $(OBJECTS) -Llibs/libmoon -lmoon
+
+#libs/libmoon/libmoon.a
 
 main.hex:	main.bin
 	rm -f main.hex main.eep.hex
