@@ -10,15 +10,17 @@
 
 #define COLORS_NUM  8
 
+static char currentState = 0;
+static char currentColor = 7;
+
 
 int clickPowerButton(void)
 {
-  static char currentState = 0;
   if (currentState) {
     setColor(0);
     currentState = 0;
   } else {
-    setColor(COLOR_R | COLOR_G | COLOR_B);
+    setColor((currentColor & COLOR_R) | (currentColor & COLOR_G) | (currentColor & COLOR_B));
     currentState = 1;
   }
   return 0;
@@ -27,7 +29,8 @@ int clickPowerButton(void)
 
 int clickColorButton(void)
 {
-  static char currentColor = 7;
+  if (!currentState)
+    return 0;
   setColor((currentColor & COLOR_R) | (currentColor & COLOR_G) | (currentColor & COLOR_B));
   if (++currentColor == 8)
     currentColor=1;
