@@ -7,5 +7,7 @@ Notes:
 
 * I cut cicrut button, and issued outside.
 
+Sorry for my fucking bad english.
+
 
 
